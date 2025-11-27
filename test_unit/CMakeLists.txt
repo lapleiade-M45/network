@@ -1,6 +1,6 @@
 include_directories("include")
 
-set(SRCS "../src/ft_inet.cpp" "../src/socket_client.cpp" main.cpp)
+set(SRCS "../src/ft_inet.cpp" "../src/socket_client.cpp" test.cpp)
 
 add_executable(test ${SRCS})
 

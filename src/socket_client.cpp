@@ -24,7 +24,10 @@ int Socket_client::create()
 
 int Socket_client::connect_socket(const struct sockaddr_in *addr)
 {
-    if(connect(domain_,(struct sockaddr *)addr,sizeof(addr)) < 0) {perror("Socket_client"); return (1);}
+    if(connect(fd_,(struct sockaddr *)addr,sizeof(addr)) < 0) 
+    {
+        perror("Socket_client"); return (1);
+    }
     else
         cout << "Socket_client " <<  fd_ << " Connected" << endl; return(0);
 }

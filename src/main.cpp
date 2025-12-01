@@ -1,43 +1,29 @@
 
 #include "../include/libip.hpp"
 
-int start_client()
+
+void print_arr_int(uint32_t *arr, uint32_t size)
 {
-     Socket_client client(AF_INET, SOCK_STREAM, 0);
-    struct sockaddr_in addr;
+    int i;
 
-    client.print_socket_client();
-    client.create();
+    for(i = 0; i < size; i++)
+        cout << arr[i]  << " " ;
+    cout << endl;
 
-    if(client.bind_server_data("192.168.1.147", 2022) < 0)
-        return(1);
-    if(client.connect_socket() > 0)
-    {
-        client.destoy();
-        printf("client cleaned\n");
-    }
-    else
-    {
-        std::string line;
-        char *l;
-
-        cout << "send message: ";
-        std::getline(std::cin, line);
-        client.send_message(line);
-    }
-    return(0);
 }
-
 
 int main(void)
 {
-    Socket_serveur serveur(AF_INET, SOCK_STREAM, 0);
+    uint32_t size;
 
-    struct sockaddr_in addr;
+    size = 0;
 
-    serveur.create();
-    serveur.bind_server_data("127.0.0.10", 8081);
-    serveur.start_serveur();
+    uint32_t *ips  = gnr_range_ip(PRIVATE_1,NULL,NULL,& size);
 
+    if(size)
+        print_arr_int(ips, size);
+
+    free(ips);
+    
     return(0);
 }

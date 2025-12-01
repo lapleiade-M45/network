@@ -29,32 +29,19 @@ int inet_test()
     assert(ft_inet_addr("255.0.0.0") == inet_addr("255.0.0.0"));
     assert(ft_inet_addr("255.128.0.0") == inet_addr("255.128.0.0"));
     assert(ft_inet_addr("256.1.1.1") != inet_addr("256.1.1.1"));
-    // assert(ft_inet_addr("10.10.10") == -1);
-    // assert(ft_inet_addr("10.10") == -1);
-    // assert(ft_inet_addr("10") == -1);
-    // assert(ft_inet_addr("") == -2 || ft_inet_addr("") == -1);
-    // assert(ft_inet_addr("10..10.10") == -1);
+    assert(ft_inet_addr("10.10.10") == 0);
+    assert(ft_inet_addr("10.10") == 0);
+    assert(ft_inet_addr("10") == 0);
+    assert(ft_inet_addr("") == 0 || ft_inet_addr("") == 0);
+    assert(ft_inet_addr("10..10.10") == 0);
     assert(ft_inet_addr("0.255.0.255") == inet_addr("0.255.0.255"));
     
     assert(ft_inet_addr("255.0.255.0") == inet_addr("255.0.255.0"));
     assert(ft_inet_addr("100.200.150.50") == inet_addr("100.200.150.50"));
     assert(ft_inet_addr("192.168.0.255") == inet_addr("192.168.0.255"));
-    // assert(ft_inet_addr("abc.def.ghi.jkl") == -1);
+    assert(ft_inet_addr("abc.def.ghi.jkl") == 0);
     return(0);
 }
-
-
-
-void print_arr_int(int *arr)
-{
-    int i;
-
-    for(i = 0; i < 4; i++)
-        cout << arr[i]  << " " ;
-    cout << endl;
-
-}
-
 
 int generation_test()
 {
@@ -66,20 +53,21 @@ int generation_test()
     size = 0;
     uint32_t *ar = gnr_range_ip(CUSTOM, ip_start.c_str(), ip_end.c_str(), &size);
 
-    // if(size > 0)
-    // {
-    //     cout << "start test size " << size  << endl;
-    //     int i = 0;
-    //     while (i < size)
-    //     {
-    //         in_addr_t test = inet_addr(arr.at(i).c_str());
-    //         cout << " string: " << arr.at(i).c_str() << " uint32 og " << test << " own version " << ar[i] << endl;
-    //         assert(ar[i] == (uint32_t)test);
-    //         i++;
-    //     }
+    if(size > 0)
+    {
+        cout << "start test size " << size  << endl;
+        int i = 0;
+        while (i < size)
+        {
+            in_addr_t test = inet_addr(arr.at(i).c_str());
+            cout << " string: " << arr.at(i).c_str() << " uint32 og " << test << " own version " << ar[i] << endl;
+            assert(ar[i] == (uint32_t)test);
+            i++;
+        }
         
-    // }
+    }
     cout << "end test" << endl;  
+    free(ar);
     return(0);
 }
 
@@ -87,7 +75,9 @@ int generation_test()
 int main(void)
 {
 
+    inet_test();
     generation_test();
+
 
     return(0);
 }

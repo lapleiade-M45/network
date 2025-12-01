@@ -11,7 +11,10 @@ Je vais effectuer une reconnaissance active et passive du réseau pour obtenir u
 
 ## Outils 1:
 
+```
 uint32_t *gnr_range_ip(int network_type, const char *ip_start, const char *ip_end, uint32_t *size);
+
+```
 
 La fonction *gnr_range_ip genere un range d'ip destination pret à être utilisé dans les header ip;
 

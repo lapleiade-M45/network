@@ -20,6 +20,7 @@ La fonction *gnr_range_ip genere un range d'ip destination pret à être utilis�
 
 ip_start et ip_end doivent être égal à NULL si network_type != CUSTOM 
 
+Un pointeur size est passé en argument et retourne la taille du reseau.
 
 /*
     les reseaux privées sont defini d'apres la rfc 1918
